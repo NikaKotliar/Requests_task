@@ -9,13 +9,11 @@ class SuperHero:
     def __init__(self, access_token, hero_name):
         self.token = access_token
         self.hero_name = hero_name
-        # self.intelect = -1
         self.hero_intelligence = None
 
     def get_hero_intelligence(self):
         hero_url = 'https://superheroapi.com/api/{}/search/{}'.format(self.token, self.hero_name)
         response = requests.get(hero_url)
-        # self.intelect = next((int(hero['powerstats']['intelligence']) for hero in response.json()['results'] if hero['name'] == self.hero_name), -1)
         for hero in response.json()['results']:
             if hero['name'] == self.hero_name:
                 self.hero_intelligence = int(hero['powerstats']['intelligence'])
